@@ -216,5 +216,6 @@ setup(
 	include_package_data=True,
 	zip_safe=False,
 	ext_modules=ext_modules,
-	cmdclass={"build_ext": BuildExtension}
+	cmdclass={"build_ext": BuildExtension},
+	extra_compile_args=['-std=c++17']
 )
