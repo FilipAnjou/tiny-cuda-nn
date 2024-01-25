@@ -107,7 +107,8 @@ min_compute_capability = min(compute_capabilities)
 print(f"Targeting C++ standard {cpp_standard}")
 
 base_nvcc_flags = [
-	f"-std=c++{cpp_standard}",
+	#f"-std=c++{cpp_standard}",
+	f"-std=c++17",
 	"--extended-lambda",
 	"--expt-relaxed-constexpr",
 	# The following definitions must be undefined
@@ -118,13 +119,15 @@ base_nvcc_flags = [
 ]
 
 if os.name == "posix":
-	base_cflags = [f"-std=c++{cpp_standard}"]
+	#base_cflags = [f"-std=c++{cpp_standard}"]
+	base_cflags = [f"-std=c++17"]
 	base_nvcc_flags += [
 		"-Xcompiler=-Wno-float-conversion",
 		"-Xcompiler=-fno-strict-aliasing",
 	]
 elif os.name == "nt":
-	base_cflags = [f"/std:c++{cpp_standard}"]
+	#base_cflags = [f"/std:c++{cpp_standard}"]
+	base_cflags = [f"/std:c++17"]
 
 
 # Some containers set this to contain old architectures that won't compile. We only need the one installed in the machine.
@@ -204,12 +207,14 @@ setup(
 		"Topic :: Scientific/Engineering :: Image Processing",
 	],
 	keywords="PyTorch,cutlass,machine learning",
-	url="https://github.com/nvlabs/tiny-cuda-nn",
+	#url="https://github.com/nvlabs/tiny-cuda-nn",
+	url="https://github.com/FilipAnjou/tiny-cuda-nn",
 	author="Thomas Müller, Jacob Munkberg, Jon Hasselgren, Or Perel",
 	author_email="tmueller@nvidia.com, jmunkberg@nvidia.com, jhasselgren@nvidia.com, operel@nvidia.com",
 	maintainer="Thomas Müller",
 	maintainer_email="tmueller@nvidia.com",
-	download_url=f"https://github.com/nvlabs/tiny-cuda-nn",
+	#download_url=f"https://github.com/nvlabs/tiny-cuda-nn",
+	download_url=f"https://github.com/FilipAnjou/tiny-cuda-nn",
 	license="BSD 3-Clause \"New\" or \"Revised\" License",
 	packages=["tinycudann"],
 	install_requires=[],
